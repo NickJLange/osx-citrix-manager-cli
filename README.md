@@ -1,4 +1,4 @@
-# osx-citrix-manager-cli
+# Citrix Workspace Manager (`cwm`)
 
 A macOS CLI tool to safely park and unpark Citrix Workspace without requiring a reboot.
 
@@ -13,7 +13,7 @@ Simply killing Citrix Workspace processes leaves macOS in a broken state:
 
 ## The Solution
 
-`citrix.sh` uses `launchctl bootout`/`bootstrap` to cleanly unload and reload all Citrix services in the correct dependency order — no reboot required.
+`cwm` uses `launchctl bootout`/`bootstrap` to cleanly unload and reload all Citrix services in the correct dependency order — no reboot required.
 
 ### Stop (Park)
 
@@ -31,29 +31,38 @@ Reloads services hub-to-edge: bootstraps system LaunchDaemons first, then user L
 
 ## Installation
 
+### Via Homebrew (recommended)
+
 ```bash
-git clone https://github.com/NickJLange/osx-citrix-manager-cli.git
+brew tap 5L-Labs/citrix-cli
+brew install citrix-workspace-manager
+```
+
+### Manual
+
+```bash
+git clone https://github.com/5L-Labs/osx-citrix-manager-cli.git
 cd osx-citrix-manager-cli
-chmod +x scripts/citrix.sh
+chmod +x scripts/cwm.sh
 ```
 
 ## Usage
 
 ```bash
 # Check current Citrix status
-./scripts/citrix.sh status
+cwm status
 
 # Stop (park) all Citrix services
-sudo ./scripts/citrix.sh stop
+sudo cwm stop
 
 # Start (unpark) all Citrix services
-sudo ./scripts/citrix.sh start
+sudo cwm start
 
 # Preview what would happen without making changes
-sudo ./scripts/citrix.sh --dry-run stop
+sudo cwm --dry-run stop
 
 # Verbose output for debugging
-sudo ./scripts/citrix.sh --verbose start
+sudo cwm --verbose start
 ```
 
 ## Commands
