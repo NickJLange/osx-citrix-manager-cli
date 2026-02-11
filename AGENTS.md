@@ -2,12 +2,12 @@
 
 ## Project Overview
 
-macOS CLI tool (`scripts/citrix.sh`) for safely parking and unparking Citrix Workspace using `launchctl bootout`/`bootstrap` in correct dependency order, avoiding the reboot required by naive process killing.
+macOS CLI tool (`scripts/cwm.sh`) for safely parking and unparking Citrix Workspace using `launchctl bootout`/`bootstrap` in correct dependency order, avoiding the reboot required by naive process killing.
 
 ## Repository Structure
 
 ```
-scripts/          # Shell scripts (citrix.sh is the main entry point)
+scripts/          # Shell scripts (cwm.sh is the main entry point)
 openspec/
   specs/          # Living documentation of current system state
   changes/        # Active change proposals (SDD workflow)
@@ -35,19 +35,19 @@ Manual verification on macOS:
 
 ```bash
 # Full cycle test
-sudo ./scripts/citrix.sh stop
-./scripts/citrix.sh status    # expect all unloaded, 0 processes
-sudo ./scripts/citrix.sh start
-./scripts/citrix.sh status    # expect all loaded
+sudo ./scripts/cwm.sh stop
+./scripts/cwm.sh status    # expect all unloaded, 0 processes
+sudo ./scripts/cwm.sh start
+./scripts/cwm.sh status    # expect all loaded
 ```
 
 ```bash
 # Dry-run (no side effects)
-sudo ./scripts/citrix.sh --dry-run stop
+sudo ./scripts/cwm.sh --dry-run stop
 ```
 
 ## Lint / Check
 
 ```bash
-shellcheck scripts/citrix.sh
+shellcheck scripts/cwm.sh
 ```
